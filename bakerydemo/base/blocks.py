@@ -1,7 +1,7 @@
 from wagtail.wagtailimages.blocks import ImageChooserBlock
 from wagtail.wagtailembeds.blocks import EmbedBlock
 from wagtail.wagtailcore.blocks import (
-    CharBlock, ChoiceBlock, RichTextBlock, StreamBlock, StructBlock, TextBlock,
+    CharBlock, ChoiceBlock, RichTextBlock, StreamBlock, StructBlock, TextBlock, URLBlock
 )
 
 
@@ -65,3 +65,26 @@ class BaseStreamBlock(StreamBlock):
         help_text='Insert an embed URL e.g https://www.youtube.com/embed/SGJFWirQ3ks',
         icon="fa-s15",
         template="blocks/embed_block.html")
+
+
+class BreadQuote(StructBlock):
+    """ Quotes about ONLY breads """
+    text = TextBlock()
+    attribute_name = CharBlock(
+        blank=True, required=False, label='e.g. Mary Berry')
+    # TODO When this field is added, a migration is made:
+    # url = URLBlock()
+
+    class Meta:
+        icon = "fa-quote-left"
+        template = "blocks/blockquote.html"
+
+
+class BreadStreamBlock(StreamBlock):
+    """ Custom blocks that BreadPage can contain """
+    heading_block = HeadingBlock()
+    block_quote = BreadQuote()
+    paragraph_block = RichTextBlock(
+        icon="fa-paragraph",
+        template="blocks/paragraph_block.html"
+    )

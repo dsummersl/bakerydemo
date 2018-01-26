@@ -13,7 +13,7 @@ from wagtail.wagtailsearch import index
 from wagtail.wagtailsnippets.models import register_snippet
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 
-from bakerydemo.base.blocks import BaseStreamBlock
+from bakerydemo.base.blocks import BreadStreamBlock
 
 
 @register_snippet
@@ -99,7 +99,7 @@ class BreadPage(Page):
         help_text='Landscape mode only; horizontal width between 1000px and 3000px.'
     )
     body = StreamField(
-        BaseStreamBlock(), verbose_name="Page body", blank=True
+        BreadStreamBlock(), verbose_name="Page body", blank=True
     )
     origin = models.ForeignKey(
         Country,
